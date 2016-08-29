@@ -1,0 +1,96 @@
+<section ng-controller="addMain">
+    <section class="selection container">
+        <div>
+            <div class="title">
+                <h3> הוספת חלון לרשימה </h3>
+            </div>
+            <div class="windowSelect">
+                <label>
+                    <select id="company" ng-model="companySelect"
+                            ng-options="company as company for company in companyNames"
+                            ng-change="getCompanySerials(companySelect)"></select>
+                </label>
+                <label>
+                    <select id="companyOptions" ng-model="serialSelect"
+                            ng-options="serial as serial for serial in companySerials"
+                            ng-change="getSerialWindows(serialSelect)"></select>
+                </label>
+                <label>
+                    <select id="options" ng-model="windowSelect"
+                            ng-options="window.name for window in serialWindows track by window.value"
+                            ng-change="getWindowInfo(windowSelect)"></select>
+                </label>
+
+            </div>
+            <div class="inputToAddWindow {{inputHideShow}}">
+
+                <div>
+                    <label>
+                        <input ng-repeat="i in getNumber(heightInput) track by $index" type="number" ng-minlength="0"
+                               ng-model="windowInfoModel.height[$index]" placeholder=" גובה {{$index + 1}}" required>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input ng-repeat="i in getNumber(widhtInput) track by $index" type="number" ng-minlength="0"
+                               ng-model="windowInfoModel.width[$index]" placeholder=" רוחב {{$index + 1}}" required>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input ng-minlength="0" type="number" min="0" ng-model="windowInfoModel.costByMeter"
+                               placeholder="מחיר למטר">
+
+                        <input type="text" ng-model="windowInfoModel.description" placeholder="תיאור חלון">
+
+                        <input type="text" ng-model="windowInfoModel.glassDescription" placeholder="תיאור זכוכית">
+                        <button ng-click="addWindow()"><i class="fa fa-plus fa-lg"></i> הוסף</button>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="selection container {{tableHideShow}}">
+        <div>
+            <div class="title">
+                <h3> רשימת כל החלונות והדלתות </h3>
+            </div>
+            <div class="tableButtons">
+                <button><i class="fa fa-remove fa-lg"></i> מחק הכל</button>
+                <button><i class="fa fa-print fa-lg"></i> הדפס</button>
+                <button><i class="fa fa-mail-forward fa-lg"></i> שלח במייל</button>
+                <button><i class="fa fa-file-pdf-o fa-lg"></i> הורד PDF</button>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <th>מס'</th>
+                        <th>גובה</th>
+                        <th>רוחב</th>
+                        <th>חברה</th>
+                        <th>סדרה</th>
+                        <th>תיאור חלון</th>
+                        <th>מס' נתיבים</th>
+                        <th>מחיר</th>
+                        <th>מחיקה</th>
+                    </tr>
+                    <tr ng-repeat="windowIn in arrayOfAllWindows track by $index">
+                        <td>{{$index + 1}}</td>
+                        <td>{{windowIn.height[0]}}</td>
+                        <td>{{windowIn.width[0]}}</td>
+                        <td>{{windowIn.company}}</td>
+                        <td>{{windowIn.serial}}</td>
+                        <td>{{windowIn.windowDescription}}<br>{{windowIn.glassDescription}}<br>{{windowIn.description}}
+                        </td>
+                        <td>{{windowIn.cost}}</td>
+                        <td>{{windowIn.costByMeter}} למטר<br>{{windowIn.cost}} כולל</td>
+                        <td>{{windowIn.cost}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</section>

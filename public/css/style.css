@@ -1,0 +1,197 @@
+body{
+    direction: rtl;
+}
+
+.container{
+    width: 70%;
+    margin: auto;
+}
+
+.container2{
+    width: 72%;
+    margin: auto;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+button{
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #fff;
+    border: 1px solid #9d9d9d;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    background-color: #e53935;
+}
+button:hover{
+    background-color: #d32f2f;
+}
+
+input , select{
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+
+
+/* ###################### HEADER START #################### */
+
+header{
+    background-color: #f6f6f6;
+    border: 1px solid #d6d6d6;
+    height: 48px;
+}
+
+header p{
+    margin: 0 20px;
+    font-size: 2.5em;
+    color: #E41B17;
+}
+
+header p span{
+    margin: 0;
+    font-size: 0.5em;
+    color: #777;
+}
+
+/* ###################### NAVIGATION BUTTONS START #################### */
+
+.navigationButtons{
+    margin-top: 15px;
+}
+
+.ulNavButtons{
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.ulNavButtons li{
+    list-style: none;
+    border: 1px solid #d6d6d6;
+    float: right;
+    padding: 10px;
+}
+
+.ulNavButtons li:first-child{
+    border-radius: 0 5px 5px 0;
+}
+
+.ulNavButtons li:last-child{
+    border-radius:  5px 0 0 5px ;
+}
+
+.ulNavButtons li:hover{
+    background-color: #f6f6f6;;
+}
+
+.ulNavButtons li a{
+    text-decoration: none;
+    color: #000;
+    padding: 5px;
+    margin: 10px;
+}
+
+/*<!-- #################### SELECTION OF COMPANY .. WINDOW ..  START ################## -->*/
+
+.windowSelect{
+    margin: 20px 15px 0 0;
+    padding-bottom: 20px;
+}
+
+.selection{
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.selection  .title{
+    background-color: #f6f6f6;
+}
+
+.selection .title > h3{
+    margin: 0;
+    padding: 10px 5px;
+}
+
+#company , #serials{
+    width: 10%;
+}
+
+#options{
+    width: 75%;
+}
+
+/*<!-- ###### inputToAddWindow ####### -->*/
+
+.inputToAddWindow{
+    margin: 0 15px 0 0;
+    padding-bottom: 20px;
+}
+
+.inputToAddWindow input{
+    height: 18px;
+    margin: 3px 0;
+    margin-left: 3px ;
+    width: 10%;
+}
+
+.inputToAddWindow > div:last-child input{
+    width: 35%;
+}
+.inputToAddWindow > div:last-child input:first-child{
+    width: 10%;
+}
+
+/*<!-- ############################  TABLE section ########################## -->*/
+
+.tableButtons{
+    margin: 20px 15px 0 80px;
+}
+
+.tableButtons button:first-child{
+    background-color: #f57c00
+}
+
+.tableButtons button + button{
+    float: left;
+    margin-left: 5px;
+    background-color: #4caf50;
+}
+
+/*<!-- ############################ FOR TABLE ########################## -->*/
+table {
+    font-family: arial, sans-serif;
+    font-size: 0.9em;
+    border-collapse: collapse;
+    width: 95%;
+    margin: 3px 15px 20px 0;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

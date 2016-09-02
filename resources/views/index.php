@@ -10,10 +10,13 @@
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
 
+    <script src="app/GlobalDataService.js"></script>
+    <script src="app/CalculatorService.js"></script>
     <script src="app/MainNavigationController.js"></script>
     <script src="app/models.js"></script>
     <script src="app/TestDirective.js"></script>
     <script src="app/AddWindowsMainController.js"></script>
+    <script src="app/CutByWindowsController.js"></script>
 
 </head>
 <body>

@@ -11,8 +11,9 @@
     <script src="js/angular-route.min.js"></script>
 
 
-    <script src="app/MainNavigationController.js"></script>
     <script src="app/models.js"></script>
+    <script src="app/GlobalDataService.js"></script>
+    <script src="app/MainNavigationController.js"></script>
     <script src="app/TestDirective.js"></script>
 
 </head>

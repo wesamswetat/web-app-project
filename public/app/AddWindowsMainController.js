@@ -2,9 +2,9 @@
  * Created by Wesam on 8/29/2016.
  */
 
-var addMainWindows = angular.module('AddwindowsMain',[]);
+var addMainWindows = angular.module('AddwindowsMain', []);
 
-addMainWindows.controller('addMain' , function ($scope, $http, myCache) {
+addMainWindows.controller('addMain', function ($scope, $http, myCache, globalDataService ,calculatorService) {
 
 
     (function init() {
@@ -23,12 +23,14 @@ addMainWindows.controller('addMain' , function ($scope, $http, myCache) {
             windowDescription: '',
             glassDescription: '',
             company: '',
-            serial: ''
+            serial: '',
+            funCode: ''
         };
         $scope.inputHideShow = 'hide';
-        $scope.tableHideShow = 'hide';
-        $scope.arrayOfAllWindows = [];
+        $scope.tableHideShow = (globalDataService.getArrayOfAllWindows().length > 0) ? 'show' : 'hide';
+        $scope.arrayOfAllWindows = globalDataService.getArrayOfAllWindows();
     })();
+
 
     $scope.getCompanySerials = function (company) {
 
@@ -76,6 +78,7 @@ addMainWindows.controller('addMain' , function ($scope, $http, myCache) {
 
     $scope.getWindowInfo = function (windoFunCode) {
         $scope.windowInfoModel.windowDescription = windoFunCode.name;
+        $scope.windowInfoModel.funCode = windoFunCode.value;
         if (myCache.get(windoFunCode.value) == null) {
             $http({
                 method: 'GET',
@@ -87,6 +90,7 @@ addMainWindows.controller('addMain' , function ($scope, $http, myCache) {
                 $scope.toCalc = response.data;
                 myCache.put(windoFunCode.value, $scope.toCalc);
                 myCache.put('curentFunCode', windoFunCode.value);
+                globalDataService.setArrayOfWindowsObjects(windoFunCode.value, $scope.toCalc[0]);
                 $scope.heightInput = $scope.toCalc[0].height_input;
                 $scope.widhtInput = $scope.toCalc[0].widht_input;
                 $scope.inputHideShow = 'show';
@@ -98,6 +102,8 @@ addMainWindows.controller('addMain' , function ($scope, $http, myCache) {
             });
         } else {
             $scope.toCalc = myCache.get(windoFunCode.value);
+            globalDataService.setArrayOfWindowsObjects(windoFunCode.value, $scope.toCalc);
+            $scope.inputHideShow = 'show';
             show();
         }
     };
@@ -117,14 +123,16 @@ addMainWindows.controller('addMain' , function ($scope, $http, myCache) {
         return (angular.isDefined(num)) ? new Array(num) : new Array(1);
     };
 
-    $scope.addWindow = function () {
+    $scope.clickAddWindow = function () {
         var newWindowToList = {};
         $scope.windowInfoModel.cost = $scope.windowInfoModel.height[0] / 100 * $scope.windowInfoModel.width[0] / 100 * $scope.windowInfoModel.costByMeter;
         angular.copy($scope.windowInfoModel, newWindowToList);
-
-        $scope.arrayOfAllWindows.push(newWindowToList);
+        calculatorService.calculatAndAddWindows(newWindowToList , myCache.get(newWindowToList.funCode));
+        globalDataService.setArrayOfAllWindows(newWindowToList);
+        $scope.arrayOfAllWindows = globalDataService.getArrayOfAllWindows();//to update $scope.arrayOfAllWindows with the new added window
         $scope.tableHideShow = 'show';
     };
+
 
 });
 
